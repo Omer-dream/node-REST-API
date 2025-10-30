@@ -10,7 +10,7 @@ const authHeader = req.get('Authorization');
   const token = authHeader.split(' ')[1];
   let decodedToken;
   try {
-    decodedToken = jwt.verify(token, 'mySuperSecretKey123!@#');
+    decodedToken = jwt.verify(token, process.env.JWT_SECRET);
   }
   catch (err) {
    return res.status(500).json({ message: 'Token verification failed.' });
